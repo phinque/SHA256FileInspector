@@ -1,0 +1,85 @@
+﻿<Window x:Class="CheckSumSHA256Inspector.MainWindow"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:vm="clr-namespace:CheckSumSHA256Inspector.ViewModels"
+                xmlns:local="clr-namespace:CheckSumSHA256Inspector"
+                mc:Ignorable="d"
+                Title="SHA256 File Inspector" 
+                ResizeMode="NoResize"
+                WindowStartupLocation="CenterScreen"
+                Height="200" Width="650"
+                >
+
+    <Window.Resources>
+        <local:MainWindow x:Key="MainWindowViewModel" />
+    </Window.Resources>
+    <Window.DataContext>
+        <StaticResourceExtension ResourceKey="MainWindowViewModel" />
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Button Grid.Column="1" 
+                Grid.Row="1"
+                x:Name="FindFile"
+                Command="{Binding FindFileCommand}"
+                >Find File</Button>
+        <TextBox Grid.Column="2" 
+                 Grid.Row="1"
+                 Margin ="20 0 20 0"
+                 Name="CheckFileName"
+                 Text="{Binding CheckSumFile}">
+        </TextBox>
+        <Label Grid.Column="1" Grid.Row="2" 
+               VerticalAlignment="Center" 
+               HorizontalAlignment="Center">
+            Check Sum
+        </Label>
+        <Border Grid.Column="2" 
+                Grid.Row="2"
+                Margin="20"
+                Style="{DynamicResource RedBorder}"
+                x:Name="TextBlockBorder">
+            <TextBlock Grid.Column="2" 
+                   Grid.Row="2"
+                   TextWrapping="Wrap"
+                   Name="CheckSumValue">
+            </TextBlock>
+        </Border>
+        <Button  Grid.Column="2" 
+                 Grid.Row="2"
+                 x:Name="CopyButton"
+                 HorizontalAlignment="Right"
+                 VerticalAlignment="Bottom"
+                 Width="70"
+                 Margin="0 0 20 20"
+                 Background="LightPink"
+                 Command="{Binding CopyCheckSumCommand}">
+            Copy
+        </Button>
+
+
+        <Button Grid.Column="2"
+                Grid.Row="3"
+                x:Name="Done"
+                Command="{Binding CloseCommand}"
+                HorizontalAlignment="Right"
+                Width="50"
+                Margin="0 0 20 20">
+            Done
+        </Button>
+    </Grid>
+</Window>
