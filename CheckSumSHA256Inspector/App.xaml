@@ -4,16 +4,15 @@
              xmlns:local="clr-namespace:CheckSumSHA256Inspector"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        
 
-        <Style x:Key="GreenBorder" TargetType="{x:Type Border}">
-            <Setter Property="BorderThickness" Value="1" />
-            <Setter Property="BorderBrush" Value="LightGreen" />
-        </Style>
-        <Style x:Key="RedBorder" TargetType="{x:Type Border}">
-            <Setter Property="BorderThickness" Value="1" />
-            <Setter Property="BorderBrush" Value="LightPink" />
-        </Style>
+        <ResourceDictionary >
+            <ResourceDictionary.MergedDictionaries>
+                <!-- order is important -->
+                <ResourceDictionary Source="Styles/Colors.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+
 
     </Application.Resources>
 </Application>

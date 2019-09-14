@@ -9,15 +9,14 @@
                 Title="SHA256 File Inspector" 
                 ResizeMode="NoResize"
                 WindowStartupLocation="CenterScreen"
-                Height="200" Width="650"
-                >
+                Height="200" Width="650">
 
-    <Window.Resources>
-        <local:MainWindow x:Key="MainWindowViewModel" />
-    </Window.Resources>
-    <Window.DataContext>
-        <StaticResourceExtension ResourceKey="MainWindowViewModel" />
-    </Window.DataContext>
+    <!-- <Window.Resources> -->
+    <!--     <vm:MainWindowViewModel x:Key="MainWindowViewModel" /> -->
+    <!-- </Window.Resources> -->
+    <!-- <Window.DataContext> -->
+    <!--     <StaticResourceExtension ResourceKey="MainWindowViewModel" /> -->
+    <!-- </Window.DataContext> -->
 
     <Grid>
         <Grid.RowDefinitions>
@@ -51,12 +50,13 @@
         <Border Grid.Column="2" 
                 Grid.Row="2"
                 Margin="20"
-                Style="{DynamicResource RedBorder}"
+                Style="{Binding CheckSumBorderStyle}"
                 x:Name="TextBlockBorder">
             <TextBlock Grid.Column="2" 
                    Grid.Row="2"
                    TextWrapping="Wrap"
-                   Name="CheckSumValue">
+                   Name="CheckSumValue"
+                   Text="{Binding CheckSumValue}">
             </TextBlock>
         </Border>
         <Button  Grid.Column="2" 
@@ -66,7 +66,7 @@
                  VerticalAlignment="Bottom"
                  Width="70"
                  Margin="0 0 20 20"
-                 Background="LightPink"
+                 Background="{Binding CopyButtonColor}"
                  Command="{Binding CopyCheckSumCommand}">
             Copy
         </Button>

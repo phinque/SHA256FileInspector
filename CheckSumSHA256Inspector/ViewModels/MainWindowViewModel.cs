@@ -3,6 +3,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 using Microsoft.Win32;
 
 namespace CheckSumSHA256Inspector.ViewModels
@@ -17,14 +18,22 @@ namespace CheckSumSHA256Inspector.ViewModels
         }
 
         public ICommand CloseCommand { get; set; }
-        
         public ICommand FindFileCommand { get; set; }
         public ICommand CopyCheckSumCommand { get; set; }
 
 
-        public string CheckSumValue { get; set; }
-        public string CheckSumFile { get; set; }
+        public string CheckSumValue { get; set; } = string.Empty;
+        public string CheckSumFile { get; set; } = string.Empty;
 
+        public Style CheckSumBorderStyle =>
+            CheckSumValue?.Length > 0
+                ? (Style) Application.Current.Resources["GreenBorder"]
+                : (Style) Application.Current.Resources["RedBorder"];
+
+        public Brush CopyButtonColor => 
+            Clipboard.GetText() != CheckSumValue
+                ? (Brush)Application.Current.Resources["LightPinkBrush"]
+                : (Brush)Application.Current.Resources["LightGreenBrush"];
 
         private void FindFile()
         {
@@ -35,8 +44,7 @@ namespace CheckSumSHA256Inspector.ViewModels
                 CheckSumValue = GetCheckSumHash(dlg.FileName);
             }
         }
-
-
+        
         private string GetCheckSumHash(string fileName)
         {
             using (FileStream stream = File.OpenRead(fileName))
@@ -53,6 +61,10 @@ namespace CheckSumSHA256Inspector.ViewModels
             {
                 Clipboard.Clear();
                 Clipboard.SetText( CheckSumValue );
+                //force CheckSumValue to reevaluate for button color
+                var checkSum = CheckSumValue;
+                CheckSumValue = string.Empty;
+                CheckSumValue = checkSum;
             }
         }
 
@@ -60,4 +72,6 @@ namespace CheckSumSHA256Inspector.ViewModels
 
 
     }
+
+
 }
