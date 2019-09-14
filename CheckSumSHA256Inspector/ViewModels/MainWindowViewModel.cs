@@ -15,6 +15,7 @@ namespace CheckSumSHA256Inspector.ViewModels
             CloseCommand = new RelayCommand( () => Application.Current.Shutdown( 0 ) );
             FindFileCommand = new RelayCommand(() => FindFile() );
             CopyCheckSumCommand = new RelayCommand( () => CopyCheckSumToClipboard() );
+            Clipboard.Clear();
         }
 
         public ICommand CloseCommand { get; set; }
@@ -32,8 +33,8 @@ namespace CheckSumSHA256Inspector.ViewModels
 
         public Brush CopyButtonColor => 
             Clipboard.GetText() != CheckSumValue
-                ? (Brush)Application.Current.Resources["LightPinkBrush"]
-                : (Brush)Application.Current.Resources["LightGreenBrush"];
+                ? (Brush)Application.Current.Resources["LightGreenBrush"]
+                : (Brush)Application.Current.Resources["LightPinkBrush"];
 
         private void FindFile()
         {
