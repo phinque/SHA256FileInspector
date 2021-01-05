@@ -8,6 +8,5 @@ It allows you to select a file on your machine and see the Check Sum using SHA25
 
 ## Prerequisites
  - Visual Studio 2019 
- - [WiX Toolset 3.11.2]("https://wixtoolset.org/releases/"){:target="_blank"}
- - <a href="https://wixtoolset.org/releases/" target="_blank">WiX Toolset 3.11.2</a>
- - <a href="https://marketplace.visualstudio.com/items?itemName=WixToolset.WixToolsetVisualStudio2019Extension"  target="_blank">WiX Toolset Visual Studio 2019 Extension</a>
+ - WiX Toolset 3.11.2 (<a href="https://wixtoolset.org/releases/" target="_blank">wixtoolset.org/releases</a>)
+ - WiX Toolset Visual Studio 2019 Extension (<a href="https://marketplace.visualstudio.com/items?itemName=WixToolset.WixToolsetVisualStudio2019Extension"  target="_blank">marketplace.visualstudio.com</a>)
