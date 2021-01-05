@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product
+    Id="2A01681B-77D4-42A7-BC54-813DD5E89247"
+    Name="CheckSumSHA256Inspector"
+    Language="1033"
+    Version="1.0.0.0"
+    Manufacturer="Code Cruncher"
+    UpgradeCode="4D21EDEC-CF69-4570-9102-9CF04C1B9EA7">
+
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate EmbedCab="yes"/>
+
+    <Feature Id="ProductFeature" Title="CheckSumSHA256Inspector" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+    </Feature>
+  </Product>
+
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFiles64Folder">
+        <Directory Id="CodeCruncher" Name="CodeCruncher">
+          <Directory Id="INSTALLFOLDER" Name="CheckSumSHA256Inspector" />
+        </Directory>
+      </Directory>
+    </Directory>
+  </Fragment>
+
+  <Fragment>
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <Component Id="CheckSumSHA256Inspector"
+                 Guid="31402A0D-DB4C-4CAE-92A0-5A1A3D83FD3C"
+                 KeyPath="yes"
+                 Win64="yes">
+
+        <File Id="CheckSumSHA256Inspector.exe"
+              Source="$(var.CheckSumSHA256Inspector.TargetDir)"
+              Name="$(var.CheckSumSHA256Inspector.TargetFileName)"></File>
+
+        <Shortcut Id="StartMenuShortcut"
+                  Name="Check Sum SHA256 Inspector"
+                  Description="Get the SHA256 check sum for selected file."
+                  Target="[INSTALLFOLDER]CheckSumSHA256Inspector.exe"
+                  WorkingDirectory="CheckSumSHA256Inspector" >
+          <Icon Id="checkDocIco" SourceFile="$(var.CheckSumSHA256Inspector.ProjectDir)Resources\check-doc-64.ico"></Icon>
+        </Shortcut>
+      </Component>
+
+    </ComponentGroup>
+  </Fragment>
+</Wix>
